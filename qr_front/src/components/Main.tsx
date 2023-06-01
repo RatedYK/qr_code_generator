@@ -32,7 +32,7 @@ const Main = () => {
     }
 
     function fetchQRcode(inputUrl: string) {
-        fetch('http://localhost:8000/qrcode', {
+        fetch('https://qr-code-gen-back.onrender.com/qrcode', {
             method: 'POST',
             body: JSON.stringify({
                 url: inputUrl,
