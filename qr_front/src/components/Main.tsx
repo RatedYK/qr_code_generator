@@ -19,7 +19,6 @@ const Main = () => {
         e.preventDefault()
         setShowLoading(true)
         await fetchQRcode(url)
-        setShowLoading(false)
         setUrl('')
     }
 
@@ -29,7 +28,7 @@ const Main = () => {
 
     function handleSizeChange(e: React.ChangeEvent<HTMLInputElement>) {
         setSize(parseInt(e.target.value))
-        
+
     }
 
     function fetchQRcode(inputUrl: string) {
@@ -51,6 +50,7 @@ const Main = () => {
             }
             // Read the Blob as Data URL
             reader.readAsDataURL(blob) 
+            setShowLoading(false)
         })
         .catch(err => console.log(err))
     }
