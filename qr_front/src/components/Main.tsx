@@ -1,15 +1,21 @@
 import {useState} from 'react'
 import QRcode from './QRcode'
+import LoadPopUp from './LoadPopUp'
 
 const Main = () => {
     const [url, setUrl] = useState('')
     const [size, setSize] = useState(5)
     const [qrcodePng, setQrcodePng] = useState('')
+    const [showLoading, setShowLoading] = useState(false)
 
 
-    function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // HANDLER FUNCTIONS
+
+    async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        fetchQRcode(url)
+        setShowLoading(true)
+        await fetchQRcode(url)
+        setShowLoading(false)
         setUrl('')
     }
 
@@ -46,13 +52,13 @@ const Main = () => {
 
   return (
     <div className='flex flex-col items-center gap-5 w-full'>
+        {showLoading && <LoadPopUp title='Generating QR Code' message='Please wait' />}
         {qrcodePng ? <QRcode qrcodePng={qrcodePng} /> :  <div></div>}
-        <div></div>
-        <h1>Generate your QR Code</h1>
-        <form className='flex flex-col gap-3 w-1/2' onSubmit={handleFormSubmit}>
-            <input className='border-double border-2 p-1 rounded' type="text" onChange={handleChange} value={url} placeholder="Enter your text/url here" />
-            <input className='border-double border-2 p-1 rounded' type="number" onChange={handleSizeChange} placeholder="Size (1 - 20)" min="1" max="20" value={size}/>
-            <button className='p-5 bg-slate-800 color-white text-white rounded-xl hover:bg-slate-300 hover:text-black ease-in duration-300' type="submit">Generate</button>
+        <h1 className='text-flex m-6'>Generate your QR Code</h1>
+        <form className='flex flex-col gap-5 w-1/2' onSubmit={handleFormSubmit}>
+            <input className='border-double border-2 p-1 rounded text-smallFlex' type="text" onChange={handleChange} value={url} placeholder="Enter your text/url here" />
+            <input className='border-double border-2 p-1 rounded text-smallFlex' type="number" onChange={handleSizeChange} placeholder="Size (1 - 20)" min="1" max="20" value={size}/>
+            <button className='p-5 bg-slate-800 color-white text-white rounded-xl hover:bg-slate-300 hover:text-black hover:scale-110 ease-in duration-300 text-flex' type="submit">Generate</button>
         </form>
     </div>
   )

@@ -8,7 +8,7 @@ size = int(sys.argv[2])
 # dot_color = sys.argv[3]
 # background_color = sys.argv[4]
 
-qr = qrcode.QRCode(version=1, box_size=size, border=3)
+qr = qrcode.QRCode(version=1, box_size=size, border=2)
 
 def make_qr_code(url):
     qr.add_data(url)
