@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "build": "pip3 install -r requirements.txt && npm install"
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

@@ -4,6 +4,18 @@ const PORT = 8000;
 const { exec } = require('child_process');
 const cors = require('cors');
 
+// Install Python dependencies
+exec('pip3 install -r requirements.txt', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Failed to install Python dependencies: ${error.message}`);
+    return;
+  }
+  console.log('Python dependencies installed successfully.');
+
+  // Start your server
+  // ...
+});
+
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST'],
