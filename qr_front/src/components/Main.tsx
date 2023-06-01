@@ -29,6 +29,7 @@ const Main = () => {
 
     function handleSizeChange(e: React.ChangeEvent<HTMLInputElement>) {
         setSize(parseInt(e.target.value))
+        
     }
 
     function fetchQRcode(inputUrl: string) {
