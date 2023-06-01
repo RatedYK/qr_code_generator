@@ -12,6 +12,10 @@ const Main = () => {
     // HANDLER FUNCTIONS
 
     async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+        if (!size) {
+            alert('Size cannot be empty')
+            return
+        }
         e.preventDefault()
         setShowLoading(true)
         await fetchQRcode(url)
